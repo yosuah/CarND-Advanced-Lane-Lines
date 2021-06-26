@@ -278,6 +278,8 @@ The pipeline works well for the `project_video` which was the original goal, mak
 
 Some important changes I would make if I were to improve it:
 
+- Calculate a single lane curvature value instead of two separate ones per separator. Also double check if the pixel-to-real-world conversion is correct (now most likely it is not).
+- Check why the lane widths fluctuates across frames, leading to a fluctuation in the lane center distance value as well. (Probably improvements to polynomial fitting and tracking discussed below would improve the situation.)
 - Improve the detection distance. The trapezoid used for the perspective transform would need to be re-set for this, and other dependent parameters re-adjusted (e.g. y-pixels-per-m).
 - Add regularization when fitting the polynomial to the lane points. If only a short section (e.g. a dashed lane marker) is detected on the image, the fitted polynomial can have weird shapes due to the second order term in the polynomial. Adding regularization on the terms (e.g. by using [Ridge regression](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression-and-classification)?) could reduce this.
 - There are a couple of other optimizations to fitting that I would try. Currently all previous points are considered with the same weight as the current pixels - this could be changed to give smaller weight to older pixels. Similarly smaller weight could be assigned to points that are further (and thus are less precisely detected). 
