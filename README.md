@@ -23,5 +23,8 @@ but obviously could not scale to more complex scenarios.
 - The actual implementation is in [lane_detector.py](lane_detector.py)
 - Sample debug output images are in [output_images](output_images)
 
-Sample output gif:
+## Sample output gif
 ![Sample output from project video](output_videos/project_video.gif)
+
+## Main processing steps
+![Main processing steps](output_9_1.png)
